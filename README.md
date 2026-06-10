@@ -1,44 +1,56 @@
-# Facebook-Style Social Network Community Detection
+# Social Network Community Detection
 
-## 1. Motivation
+## Motivation
 
-This graph AI lab uses a synthetic Facebook-style social network because downloading the SNAP Facebook dataset may require internet. The motivation is to detect communities and understand modular structure.
+Large social networks are difficult to understand node by node. Community detection helps summarize the network by finding groups with dense internal connections and fewer external connections.
 
-## 2. Project Goal
+## Project Goal
 
-Build a small, reproducible AI research lab with clear outputs and honest limitations.
+We built and analyzed a Facebook-style social network graph to detect communities and measure modularity.
 
-## 3. Dataset, Paper, Or Problem Description
+## Dataset / Problem
 
-Dataset/problem: planted partition graph with social-network-like dense groups and sparse cross-group links.
+The graph is a controlled social-network-style graph with planted communities. It is not the real SNAP Facebook dataset. This choice keeps the project runnable locally while still showing the community-detection workflow.
 
-## 4. Tools
+## Tools
 
-Tools: Python, NetworkX, pandas, matplotlib.
+Python, NetworkX, pandas, and matplotlib.
 
-## 5. Models Or Methods
+## Method
 
-Method: greedy modularity community detection and degree analysis.
+We created a planted partition graph, detected communities with greedy modularity optimization, computed network summary statistics, and visualized the graph.
 
-## 6. Hyperparameters When Relevant
+## Hyperparameters
 
-Hyperparameters: 4 groups, 18 nodes each, p_in=0.28, p_out=0.025, seed=42.
+- Groups: 4
+- Nodes per group: 18
+- Within-community edge probability: 0.28
+- Cross-community edge probability: 0.025
+- Random seed: 42
 
-## 7. Results
+## Results
 
-Results include network summary, detected communities, degree table, and graph figure.
+| Metric | Value |
+|---|---:|
+| Nodes | 72 |
+| Edges | 224 |
+| Density | 0.0876 |
+| Detected communities | 4 |
+| Modularity | 0.5564 |
 
-## 8. Interpretation Of Results
+Results are saved in `results/network_summary.csv`, `results/detected_communities.csv`, `results/degree_table.csv`, and `results/community_graph.png`.
 
-Interpretation: high modularity means nodes connect more inside communities than across them.
+## Interpretation
 
-## 9. Conclusion
+The algorithm detected four communities, matching the planted structure. The modularity score of 0.5564 indicates strong community separation: nodes connect much more inside groups than across groups.
 
-Conclusion: community detection helps summarize large networks, but real Facebook data would need privacy and bias care.
+## Conclusion
 
-## 10. How To Run
+The project demonstrates community detection on a social-network-style graph. A stronger future version should use a real public Facebook network dataset and compare multiple community algorithms.
+
+## How To Run
 
 ```bash
 pip install -r requirements.txt
-python 1_*.py
+python 1_social_community_detection.py
 ```
