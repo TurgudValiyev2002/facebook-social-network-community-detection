@@ -1,5 +1,10 @@
 # Social Network Community Detection
 
+![Project overview](assets/readme_project_overview.png)
+
+Figure: community-detection workflow for a social-network-style graph.
+
+
 ## Motivation
 
 Large social networks are difficult to understand node by node. Community detection helps summarize the network by finding groups with dense internal connections and fewer external connections.
