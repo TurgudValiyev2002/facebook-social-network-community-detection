@@ -1,21 +1,28 @@
-# Social Network Community Detection
+# Facebook Social Network Community Detection
 
 ![Project overview](assets/readme_project_overview.png)
 
-Figure: community-detection workflow for a social-network-style graph.
-
+Figure: the real SNAP Facebook network is loaded, communities are detected, and centrality/community tables are saved.
 
 ## Motivation
 
-Large social networks are difficult to understand node by node. Community detection helps summarize the network by finding groups with dense internal connections and fewer external connections.
+Community detection helps us understand how social networks organize into groups. The previous version used a planted synthetic graph. This version uses the real SNAP Facebook combined network, which makes the analysis more credible.
 
 ## Project Goal
 
-We built and analyzed a Facebook-style social network graph to detect communities and measure modularity.
+We analyzed the real Facebook combined graph from SNAP and detected communities using greedy modularity optimization.
 
-## Dataset / Problem
+## Dataset
 
-The graph is a controlled social-network-style graph with planted communities. It is not the real SNAP Facebook dataset. This choice keeps the project runnable locally while still showing the community-detection workflow.
+We used `facebook_combined.txt.gz` from the Stanford SNAP dataset collection.
+
+- Nodes: 4,039
+- Edges: 88,234
+- Connected components: 1
+- Density: 0.0108
+- Average clustering: 0.6055
+
+The raw dataset is downloaded into `data/`, which is ignored by Git.
 
 ## Tools
 
@@ -23,39 +30,58 @@ Python, NetworkX, pandas, and matplotlib.
 
 ## Method
 
-We created a planted partition graph, detected communities with greedy modularity optimization, computed network summary statistics, and visualized the graph.
+We loaded the graph as an undirected social network. Then we calculated:
 
-## Hyperparameters
-
-- Groups: 4
-- Nodes per group: 18
-- Within-community edge probability: 0.28
-- Cross-community edge probability: 0.025
-- Random seed: 42
+- Greedy modularity communities
+- Modularity score
+- Degree centrality
+- Sampled betweenness centrality
+- PageRank
+- Community sizes and internal edges
 
 ## Results
 
 | Metric | Value |
 |---|---:|
-| Nodes | 72 |
-| Edges | 224 |
-| Density | 0.0876 |
-| Detected communities | 4 |
-| Modularity | 0.5564 |
+| Nodes | 4,039 |
+| Edges | 88,234 |
+| Communities | 13 |
+| Modularity | 0.7774 |
+| Average clustering | 0.6055 |
 
-Results are saved in `results/network_summary.csv`, `results/detected_communities.csv`, `results/degree_table.csv`, and `results/community_graph.png`.
+Largest communities:
+
+| Community | Size | Share of Nodes | Internal Edges |
+|---:|---:|---:|---:|
+| 0 | 983 | 0.2434 | 25,444 |
+| 1 | 815 | 0.2018 | 13,453 |
+| 2 | 548 | 0.1357 | 5,356 |
+| 3 | 543 | 0.1344 | 13,755 |
+| 4 | 372 | 0.0921 | 2,929 |
+
+![Community sizes](results/community_sizes.png)
+
+![Facebook graph sample](results/facebook_graph_sample.png)
+
+Result files:
+
+- `results/graph_summary.csv`
+- `results/community_summary.csv`
+- `results/node_centrality.csv`
 
 ## Interpretation
 
-The algorithm detected four communities, matching the planted structure. The modularity score of 0.5564 indicates strong community separation: nodes connect much more inside groups than across groups.
+The modularity score is high, which means the graph has strong community structure. This is expected in social networks: friend groups tend to be clustered around shared contexts such as schools, workplaces, or social circles.
+
+The graph is also highly clustered. This means a user's friends are often connected to each other, which is another common property of social networks.
 
 ## Conclusion
 
-The project demonstrates community detection on a social-network-style graph. A stronger future version should use a real public Facebook network dataset and compare multiple community algorithms.
+This project now uses a real Facebook network instead of a synthetic planted graph. The main result is that the network has clear modular community structure, with 13 detected communities and modularity 0.7774.
 
 ## How To Run
 
 ```bash
 pip install -r requirements.txt
-python 1_social_community_detection.py
+python 1_real_facebook_snap_community_detection.py
 ```
