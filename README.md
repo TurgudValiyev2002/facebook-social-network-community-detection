@@ -6,7 +6,7 @@ Figure: the real SNAP Facebook network is loaded, communities are detected, and 
 
 ## Motivation
 
-Community detection helps us understand how social networks organize into groups. The previous version used a planted synthetic graph. This version uses the real SNAP Facebook combined network, which makes the analysis more credible.
+Community detection helps us understand how social networks organize into groups. This project uses the real SNAP Facebook combined network, which makes the analysis more credible than a controlled toy graph.
 
 ## Project Goal
 
@@ -77,7 +77,7 @@ The graph is also highly clustered. This means a user's friends are often connec
 
 ## Conclusion
 
-This project now uses a real Facebook network instead of a synthetic planted graph. The main result is that the network has clear modular community structure, with 13 detected communities and modularity 0.7774.
+This project uses a real Facebook network from SNAP. The main result is that the network has clear modular community structure, with 13 detected communities and modularity 0.7774.
 
 ## How To Run
 

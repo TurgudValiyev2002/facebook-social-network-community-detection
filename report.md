@@ -2,7 +2,7 @@
 
 ## Motivation
 
-The previous version used a synthetic planted graph. We replaced it with the real SNAP Facebook combined network to make the community analysis more meaningful.
+We use the real SNAP Facebook combined network to study community structure in a real social graph.
 
 ## Dataset
 
@@ -22,4 +22,4 @@ The high modularity shows strong group structure. The high clustering coefficien
 
 ## Conclusion
 
-Project 10 now uses real Facebook/SNAP data. The result supports the main idea that social networks contain strong communities, not only random connections.
+Project 10 uses real Facebook/SNAP data. The result supports the main idea that social networks contain strong communities, not only random connections.
